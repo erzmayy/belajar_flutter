@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../model/pasien.dart';
 import 'pasien_detail.dart';
+import 'pasien_item.dart';
+import 'pasien_form.dart';
 
 class PasienPage extends StatefulWidget {
   const PasienPage({super.key});
