@@ -14,72 +14,35 @@ class _PasienPageState extends State<PasienPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Data Pasien")),
+      appBar: AppBar(title: const Text("Data Pasien"),
+        actions: [
+          GestureDetector(
+            child: const Icon(Icons.add),
+            onTap: (){
+              Navigator.push(
+                  context,MaterialPageRoute(builder: (context) => PasienForm()));
+            },
+          )
+        ],
+      ),
       body: ListView(
         children: [
-          GestureDetector(
-            child: Card(
-              child: ListTile(
-                title: const Text("Rangga Pebrianto"),
-              ),
-            ),
-            onTap: () {
-              Pasien PasienKlinik = new Pasien(
-                  id: 1,
-                  nomor_rm: "202110265",
-                  nama: "Rangga Pebrianto",
-                  tanggal_lahir: "14 Februari 1997",
-                  nomor_telepon: "0891122221",
-                  alamat: "Jakarta");
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          PasienDetail(pasien: PasienKlinik)));
-            },
-          ),
-          GestureDetector(
-            child: Card(
-              child: ListTile(
-                title: const Text("Rama Sanjaya"),
-              ),
-            ),
-            onTap: () {
-              Pasien PasienKlinik = new Pasien(
-                  id: 1,
-                  nomor_rm: "202110265",
-                  nama: "Rama Sanjaya",
-                  tanggal_lahir: "14 Februari 1997",
-                  nomor_telepon: "0891122221",
-                  alamat: "Jakarta");
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                  builder: (context) =>
-                  PasienDetail(pasien: PasienKlinik)));
-            },
-          ),
-          GestureDetector(
-            child: Card(
-              child: ListTile(
-                title: const Text("Damayanti "),
-              ),
-            ),
-            onTap: () {
-              Pasien PasienKlinik = new Pasien(
-                  id: 1,
-                  nomor_rm: "202110265",
-                  nama: "Damayanti",
-                  tanggal_lahir: "14 Februari 1997",
-                  nomor_telepon: "0891122221",
-                  alamat: "Jakarta");
-                  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                  builder: (context) =>
-                  PasienDetail(pasien: PasienKlinik)));
-            },
-          ),
+          PasienItem(pasien: Pasien(nomor_rm: "1234",
+              nama: "Rangga Pebrianto",
+              tanggal_lahir: "14 Februari 1997",
+              nomor_telepon: "0891122221",
+              alamat: "Jakarta timur")),
+          PasienItem(pasien: Pasien(nomor_rm: "1234" ,
+              nama: "Rama Sanjaya",
+              tanggal_lahir: "4 Juni 1998",
+              nomor_telepon: "0891122221",
+              alamat: "Bandar Lampung")),
+          PasienItem(pasien: Pasien(nomor_rm: "1234",
+              nama: "Damayanti Diah P",
+              tanggal_lahir: "06 Maret 2003",
+              nomor_telepon: "08992578520",
+              alamat: "Bandar Lampung")),
+
         ],
       ),
     );

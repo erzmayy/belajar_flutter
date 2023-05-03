@@ -19,7 +19,7 @@ class _HalamanutamaState extends State<Halamanutama> {
         child: Column(children: [
           Container(
             child: Image.network(
-              "https://upload.wikimedia.org/wikipedia/commons/f/fa/Klinik_logo.png",
+              "https://png.pngtree.com/png-clipart/20200727/original/pngtree-health-logo-design-logo-for-the-clinic-or-pharmaceutical-company-logo-png-image_5069307.jpg",
               fit: BoxFit.cover,
             ),
           ),
