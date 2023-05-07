@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import '../model/karyawan.dart';
-import '../ui/karyawan_detail.dart';
+import '/ui/karyawan_detail.dart';
 
-class KaryawanForm extends StatefulWidget {
-  const KaryawanForm({Key? key}) : super(key: key);
-  _KaryawanFormState createState() => _KaryawanFormState();
+class KaryawanUpdateForm extends StatefulWidget {
+  final Karyawan karyawan;
+
+  const KaryawanUpdateForm({Key? key, required this.karyawan}) : super(key: key);
+  _KaryawanUpdateFormState createState() => _KaryawanUpdateFormState();
 }
 
-class _KaryawanFormState extends State<KaryawanForm> {
+class _KaryawanUpdateFormState extends State<KaryawanUpdateForm> {
   final _formKey = GlobalKey<FormState>();
   final _nipKaryawanctrl = TextEditingController();
   final _namaKaryawanctrl = TextEditingController();
@@ -17,9 +19,23 @@ class _KaryawanFormState extends State<KaryawanForm> {
   final _passwordKaryawanctrl = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _nipKaryawanctrl.text = widget.karyawan.nip;
+      _namaKaryawanctrl.text = widget.karyawan.nama;
+      _tanggal_lahirKaryawanctrl.text = widget.karyawan.tanggal_lahir;
+      _nomor_teleponKaryawanctrl.text = widget.karyawan.nomor_telepon;
+      _emailKaryawanctrl.text = widget.karyawan.email;
+      _passwordKaryawanctrl.text = widget.karyawan.password;
+
+    });
+  }
+
+  @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(title: const Text("Tambah Karyawan")),
+      appBar: AppBar(title: const Text("Ubah Karyawan")),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -77,14 +93,15 @@ class _KaryawanFormState extends State<KaryawanForm> {
     return ElevatedButton(
         onPressed: (){
           Karyawan karyawan = new Karyawan(nip: _nipKaryawanctrl.text,
-          nama: _namaKaryawanctrl.text,
-          tanggal_lahir: _tanggal_lahirKaryawanctrl.text,
-          nomor_telepon: _nomor_teleponKaryawanctrl.text,
-          email: _emailKaryawanctrl.text,
-          password: _passwordKaryawanctrl.text);
+              nama: _namaKaryawanctrl.text,
+              tanggal_lahir: _tanggal_lahirKaryawanctrl.text,
+              nomor_telepon: _nomor_teleponKaryawanctrl.text,
+              email: _emailKaryawanctrl.text,
+              password: _passwordKaryawanctrl.text);
           Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => KaryawanDetail(karyawan: karyawan)));
         },
         child: const Text("Simpan"));
   }
 }
+

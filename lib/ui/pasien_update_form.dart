@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import '../model/pasien.dart';
-import '../ui/pasien_detail.dart';
+import '/ui/pasien_detail.dart';
 
-class PasienForm extends StatefulWidget {
-  const PasienForm({Key? key}) : super(key: key);
-  _PasienFormState createState() => _PasienFormState();
+class PasienUpdateForm extends StatefulWidget {
+  final Pasien pasien;
+
+  const PasienUpdateForm({Key? key, required this.pasien}) : super(key: key);
+  _PasienUpdateFormState createState() => _PasienUpdateFormState();
 }
 
-class _PasienFormState extends State<PasienForm> {
+class _PasienUpdateFormState extends State<PasienUpdateForm> {
   final _formKey = GlobalKey<FormState>();
   final _nomor_rm_Pasienctrl = TextEditingController();
   final _namaPasienctrl = TextEditingController();
@@ -16,9 +18,21 @@ class _PasienFormState extends State<PasienForm> {
   final _alamatPasienctrl = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _nomor_rm_Pasienctrl.text = widget.pasien.nomor_rm;
+      _namaPasienctrl.text = widget.pasien.nama;
+      _tanggal_lahirPasienctrl.text = widget.pasien.tanggal_lahir;
+      _nomor_teleponPasienctrl.text = widget.pasien.nomor_telepon;
+      _alamatPasienctrl.text = widget.pasien.alamat;
+    });
+  }
+
+  @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(title: const Text("Tambah Pasien")),
+      appBar: AppBar(title: const Text("Ubah Pasien")),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -28,12 +42,13 @@ class _PasienFormState extends State<PasienForm> {
               _fieldTanggalLahir(),
               _fieldNomorTelepon(),
               _fieldAlamat(),
-              SizedBox(height: 20),_tombolSimpan()],
+              SizedBox(height: 20), _tombolSimpan()],
           ),
         ),
       ),
     );
   }
+
   _fieldNomorRM() {
     return TextField(
       decoration: const InputDecoration(labelText: "Nomor RM"),
@@ -64,7 +79,6 @@ class _PasienFormState extends State<PasienForm> {
       controller: _alamatPasienctrl,
     );
   }
-
   _tombolSimpan(){
     return ElevatedButton(
         onPressed: (){
@@ -79,3 +93,4 @@ class _PasienFormState extends State<PasienForm> {
         child: const Text("Simpan"));
   }
 }
+

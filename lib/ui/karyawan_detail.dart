@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/karyawan.dart';
+import 'karyawan_update_form.dart';
 
 class KaryawanDetail extends StatefulWidget {
   final Karyawan karyawan;
@@ -49,18 +50,31 @@ class _KaryawanDetailState extends State<KaryawanDetail> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                  child: const Text("Ubah")),
-              ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                  child: const Text("Hapus")),
+              _tombolUbah(),
+              _tombolHapus(),
             ],
           )
         ],
       ),
     );
+  }
+  _tombolUbah() {
+    return ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => KaryawanUpdateForm(karyawan: widget.karyawan)));
+        },
+        style:
+        ElevatedButton.styleFrom(backgroundColor: Colors.green),
+        child: const Text("Ubah"));
+  }
+  _tombolHapus() {
+    return  ElevatedButton(
+        onPressed: (){},
+        style:
+        ElevatedButton.styleFrom(backgroundColor: Colors.red),
+        child: const Text("Hapus"));
   }
 }

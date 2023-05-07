@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import '../model/poli.dart';
-import '../ui/poli_detail.dart';
+import '/ui/poli_detail.dart';
 
+class PoliUpdateForm extends StatefulWidget {
+  final Poli poli;
 
-class PoliForm extends StatefulWidget {
-  const PoliForm({Key? key}) : super(key: key);
-  _PoliFormState createState() => _PoliFormState();
+  const PoliUpdateForm({Key? key, required this.poli}) : super(key: key);
+  _PoliUpdateFormState createState() => _PoliUpdateFormState();
 }
 
-class _PoliFormState extends State<PoliForm> {
+class _PoliUpdateFormState extends State<PoliUpdateForm> {
   final _formKey = GlobalKey<FormState>();
   final _namaPolictrl = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _namaPolictrl.text = widget.poli.namaPoli;
+    });
+  }
 
   @override
   Widget build(BuildContext context){
@@ -28,7 +37,7 @@ class _PoliFormState extends State<PoliForm> {
   }
   _fieldNamaPoli() {
     return TextField(
-    decoration: const InputDecoration(labelText: "Nama Poli"),
+      decoration: const InputDecoration(labelText: "Nama Poli"),
       controller: _namaPolictrl,
     );
   }
@@ -37,8 +46,8 @@ class _PoliFormState extends State<PoliForm> {
     return ElevatedButton(
         onPressed: (){
           Poli poli = new Poli(namaPoli: _namaPolictrl.text);
-              Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => PoliDetail(poli: poli)));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => PoliDetail(poli: poli)));
         },
         child: const Text("Simpan"));
   }

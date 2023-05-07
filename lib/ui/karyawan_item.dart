@@ -12,7 +12,7 @@ class KaryawanItem extends StatelessWidget{
     return GestureDetector(
       child: Card(
         child: ListTile(
-          title: Text("${karyawan.id}"),
+          title: Text("${karyawan.nama}"),
         ),
       ),
       onTap: (){
