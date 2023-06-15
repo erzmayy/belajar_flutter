@@ -1,5 +1,6 @@
 import 'package:belajar_flutter/ui/karyawan_form.dart';
 import 'package:flutter/material.dart';
+import '../widget/sidebar.dart';
 import '../model/karyawan.dart';
 import 'karyawan_item.dart';
 
@@ -14,6 +15,7 @@ class _KaryawanPageState extends State<KaryawanPage> {
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      drawer: Sidebar(),
       appBar: AppBar(title: const Text("Data Karyawan"),
         actions: [
           GestureDetector(

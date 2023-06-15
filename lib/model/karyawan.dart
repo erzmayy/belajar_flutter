@@ -13,4 +13,16 @@ class Karyawan {
     required this.nomor_telepon,
     required this.email,
     required this.password});
+
+  factory Karyawan.fromJson(Map<String, dynamic> json) =>
+      Karyawan(id: json["id"],
+          nip: json["nip"],
+          nama: json["nama"],
+          tanggal_lahir: json["tanggal_lahir"],
+          nomor_telepon: json["nomor_telepon"],
+          email: json["email"],
+          password: json["password"]);
+
+
+  Map<String, dynamic> toJson() => {"nama": nama};
 }
